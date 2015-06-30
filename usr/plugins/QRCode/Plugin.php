@@ -19,6 +19,7 @@ class QRCode_Plugin implements Typecho_Plugin_Interface
      */
     public static function activate()
     {
+    	Typecho_Plugin::factory('Widget_Archive')->footer = array('QRCode_Plugin', 'footer');
         Typecho_Plugin::factory('Widget_Abstract_Contents')->contentEx = array('QRCode_Plugin', 'render');
     }
     
@@ -59,12 +60,15 @@ class QRCode_Plugin implements Typecho_Plugin_Interface
     public static function render($text, $widget)
     {
     	$content = $text;
-    	$currentPath = Helper::options()->pluginUrl . '/QRCode/';
-    	$content .= '<script type="text/javascript" src="' . $currentPath . 'assets/jquery.min.js"></script>' . "\n";
-    	$content .= '<script type="text/javascript" src="' . $currentPath . 'assets/jquery.qrcode.min.js"></script>' . "\n";
-        $content .= '<script type="text/javascript" src="' . $currentPath . 'assets/plugin.js"></script>' . "\n";
-        
         $content .= '<div class="qrcode" style="display: none;"></div>';
 		return $content;
     }
+	
+	public static function footer()
+	{
+		$currentPath = Helper::options()->pluginUrl . '/QRCode/';
+    	echo '<script type="text/javascript" src="' . $currentPath . 'assets/jquery.min.js"></script>' . "\n";
+    	echo '<script type="text/javascript" src="' . $currentPath . 'assets/jquery.qrcode.min.js"></script>' . "\n";
+        echo '<script type="text/javascript" src="' . $currentPath . 'assets/plugin.js"></script>' . "\n";
+	}
 }
