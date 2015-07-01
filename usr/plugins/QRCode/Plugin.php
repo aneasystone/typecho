@@ -67,7 +67,7 @@ class QRCode_Plugin implements Typecho_Plugin_Interface
     {
     	$content = $text;
     	$content .= '<hr />';
-    	$content .= '<div style="margin:0 auto; text-align: center; display: none;">';
+    	$content .= '<div style="text-align: center; display: none;">';
 		$content .= 	'<div class="qrcode"></div>';
 		$content .= 	'<div>扫描二维码，在手机上阅读！</div>';
 		$content .= '</div>';
