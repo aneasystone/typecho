@@ -903,7 +903,7 @@ class Widget_Contents_Post_Edit extends Widget_Abstract_Contents implements Widg
      * @access public
      * @return void
      */
-    public function trashPage($status)
+    public function trashPost($status)
     {
         $pages = $this->request->filter('int')->getArray('cid');
         $deleteCount = 0;
@@ -934,8 +934,8 @@ class Widget_Contents_Post_Edit extends Widget_Abstract_Contents implements Widg
         $this->security->protect();
         $this->on($this->request->is('do=publish') || $this->request->is('do=save'))->writePost();
         $this->on($this->request->is('do=delete'))->deletePost();
-		$this->on($this->request->is('do=trash'))->trashPage('trash');
-		$this->on($this->request->is('do=untrash'))->trashPage('publish');
+		$this->on($this->request->is('do=trash'))->trashPost('trash');
+		$this->on($this->request->is('do=untrash'))->trashPost('publish');
         $this->on($this->request->is('do=deleteDraft'))->deletePostDraft();
         $this->on($this->request->is('do=preview'))->preview();
 

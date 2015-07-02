@@ -21,7 +21,7 @@ $stat = Typecho_Widget::widget('Widget_Stat');
                                 <?php if ($request->status != "trash"): ?>
                                 <li><a lang="<?php _e('你确认要删除这些页面吗?'); ?>" href="<?php $security->index('/action/contents-page-edit?do=trash'); ?>"><?php _e('移到回收站'); ?></a></li>
                                 <?php else: ?>
-                                <li><a lang="<?php _e('你确认要还原这些文章吗?'); ?>" href="<?php $security->index('/action/contents-page-edit?do=untrash'); ?>"><?php _e('还原'); ?></a></li>	
+                                <li><a lang="<?php _e('你确认要还原这些页面吗?'); ?>" href="<?php $security->index('/action/contents-page-edit?do=untrash'); ?>"><?php _e('还原'); ?></a></li>	
                                 <?php endif; ?>
                             </ul>
                             </div>
