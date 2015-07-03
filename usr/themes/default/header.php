@@ -23,6 +23,24 @@
     <script src="//cdn.staticfile.org/respond.js/1.3.0/respond.min.js"></script>
     <![endif]-->
 
+	<?php
+		define('__TYPECHO_ADMIN__', true);
+		Typecho_Widget::widget('Widget_Options')->to($options);
+		Typecho_Widget::widget('Widget_User')->to($user);
+		Typecho_Widget::widget('Widget_Security')->to($security);
+		Typecho_Widget::widget('Widget_Menu')->to($menu);
+		if ($user->pass('administrator', true)) {
+			$header = '<link rel="stylesheet" href="' . Typecho_Common::url('normalize.css?v=' . $suffixVersion, $options->adminStaticUrl('css')) . '">
+						<link rel="stylesheet" href="' . Typecho_Common::url('grid.css?v=' . $suffixVersion, $options->adminStaticUrl('css')) . '">
+						<link rel="stylesheet" href="' . Typecho_Common::url('style.css?v=' . $suffixVersion, $options->adminStaticUrl('css')) . '">
+						<!--[if lt IE 9]>
+						<script src="' . Typecho_Common::url('html5shiv.js?v=' . $suffixVersion, $options->adminStaticUrl('js')) . '"></script>
+						<script src="' . Typecho_Common::url('respond.js?v=' . $suffixVersion, $options->adminStaticUrl('js')) . '"></script>
+						<![endif]-->';
+			echo $header;
+		}
+	?>
+
     <!-- 通过自有函数输出HTML头部信息 -->
     <?php $this->header(); ?>
 </head>
@@ -30,6 +48,13 @@
 <!--[if lt IE 8]>
     <div class="browsehappy" role="dialog"><?php _e('当前网页 <strong>不支持</strong> 你正在使用的浏览器. 为了正常的访问, 请 <a href="http://browsehappy.com/">升级你的浏览器</a>'); ?>.</div>
 <![endif]-->
+
+
+<?php 
+if ($user->pass('administrator', true)) {
+	include __TYPECHO_ADMIN_DIR__ . 'menu.php';
+} 
+?>
 
 <header id="header" class="clearfix">
     <div class="container">
