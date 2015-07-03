@@ -24,7 +24,7 @@
     <![endif]-->
 
 	<?php
-		define('__TYPECHO_ADMIN__', true);
+		
 		Typecho_Widget::widget('Widget_Options')->to($options);
 		Typecho_Widget::widget('Widget_User')->to($user);
 		Typecho_Widget::widget('Widget_Security')->to($security);
@@ -51,7 +51,9 @@
 
 
 <?php 
+
 if ($user->pass('administrator', true)) {
+	define('__TYPECHO_ADMIN__', true);
 	include __TYPECHO_ADMIN_DIR__ . 'menu.php';
 } 
 ?>
